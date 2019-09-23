@@ -9,13 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController , UITextFieldDelegate{
-    var yards: Double = 0.0
-    var meters: Double = 0.0
-    let yrd2meter = 0.9144
+//    var yards: Double = 0.0
+//    var meters: Double = 0.0
+//
+//    let yrd2meter = 0.9144
+    
+    // Default mode is length
+    var currentMode: CalculatorMode = CalculatorMode.Length
     
     @IBOutlet weak var inputFieldOne: DecimalMinusTextField!
     
     @IBOutlet weak var inputFieldTwo: DecimalMinusTextField!
+    
+    @IBOutlet weak var conversionTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,22 +49,36 @@ class ViewController: UIViewController , UITextFieldDelegate{
     
     
     @IBAction func calcBtn(_ sender: UIButton) {
-        var inp1 = Double(self.inputFieldOne.text!)
-        //var inp2 = Double(self.inputFieldTwo.text!)
-        inp1 = (inp1! * yrd2meter)
-        self.inputFieldTwo.text = String(inp1!)
+        if(self.inputFieldOne.text == ""){
+            var input = Double(self.inputFieldTwo.text!)
+            self.inputFieldOne.text = String(calculate(input!))
+        } else {
+            var input = Double(self.inputFieldOne.text!)
+            self.inputFieldTwo.text = String(calculate(input!))
+        }
     }
     
     @IBAction func modeBtn(_ sender: UIButton) {
+        if(currentMode == CalculatorMode.Length){
+            conversionTitle.text = "Volume Conversion Calculator"
+            currentMode = CalculatorMode.Volume
+        } else {
+            conversionTitle.text = "Length Conversion Calculator"
+            currentMode = CalculatorMode.Length
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if (textField == inputFieldOne){
             self.inputFieldTwo.text = ""
-            }
+        }
         else if (textField == inputFieldTwo){
             self.inputFieldOne.text = ""
         }
+    }
+    
+    func calculate(_ input: Double) -> Double{
+        return input //* yrd2meter
     }
 }
 

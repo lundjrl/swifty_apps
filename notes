@@ -1,0 +1,6 @@
+when app crashes after running settings, "this class is not key coding comp"
+go to storyboard, assistant editor, if set to automatic, click on sceen then change to settingsviewcontroller. 
+
+if you delete an outlet, you need to read the stack trace to see if it is there, if it is then go to storyboard and select view controller, click last setting to the right (select entire sceen), if yellow flag then you got an orphan outlet, delete it. Should be good.
+
+imbed settings in a navcontroller (add save and cancel buttons on bar) if let target = segue.destination.childviewcontrollers[0] as? SettingsViewController{}target. yadada
