@@ -17,11 +17,17 @@ class ViewController: UIViewController , UITextFieldDelegate{
     // Default mode is length
     var currentMode: CalculatorMode = CalculatorMode.Length
     
-    @IBOutlet weak var inputFieldOne: DecimalMinusTextField!
+    // String for focus
+    var focusField: String = ""
     
-    @IBOutlet weak var inputFieldTwo: DecimalMinusTextField!
-    
+    // Labels
+    @IBOutlet weak var toLabel: UILabel!
+    @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var conversionTitle: UILabel!
+    
+    // Fields
+    @IBOutlet weak var inputFieldOne: DecimalMinusTextField!
+    @IBOutlet weak var inputFieldTwo: DecimalMinusTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,27 +51,44 @@ class ViewController: UIViewController , UITextFieldDelegate{
     @IBAction func clearBtn(_ sender: UIButton) {
         self.inputFieldOne.text = ""
         self.inputFieldTwo.text = ""
+        dismissKeyboard()
     }
     
     
     @IBAction func calcBtn(_ sender: UIButton) {
-        if(self.inputFieldOne.text == ""){
-            var input = Double(self.inputFieldTwo.text!)
-            self.inputFieldOne.text = String(calculate(input!))
-        } else {
-            var input = Double(self.inputFieldOne.text!)
-            self.inputFieldTwo.text = String(calculate(input!))
+        var input: Double
+        if(self.inputFieldOne.text == "" && self.inputFieldTwo.text == ""){
+            // Do nothing
         }
+        else if(self.inputFieldOne.text == ""){
+            focusField = "From"
+            input = Double(self.inputFieldTwo.text!)!
+            self.inputFieldOne.text = String(calculate(input))
+        } else if(self.inputFieldTwo.text == ""){
+            focusField = "To"
+            input = Double(self.inputFieldOne.text!)!
+            self.inputFieldTwo.text = String(calculate(input))
+        }
+        dismissKeyboard()
     }
     
     @IBAction func modeBtn(_ sender: UIButton) {
         if(currentMode == CalculatorMode.Length){
+            // Volume
             conversionTitle.text = "Volume Conversion Calculator"
             currentMode = CalculatorMode.Volume
+            fromLabel.text = "Liters"
+            toLabel.text = "Gallons"
         } else {
+            // Length
             conversionTitle.text = "Length Conversion Calculator"
             currentMode = CalculatorMode.Length
+            fromLabel.text = "Yards"
+            toLabel.text = "Meters"
         }
+        self.inputFieldOne.text = ""
+        self.inputFieldTwo.text = ""
+        dismissKeyboard()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -78,6 +101,40 @@ class ViewController: UIViewController , UITextFieldDelegate{
     }
     
     func calculate(_ input: Double) -> Double{
+        var convKey: LengthConversionKey
+        var volKey: VolumeConversionKey
+        switch currentMode {
+        case CalculatorMode.Length:
+            switch focusField{
+            case "From":
+                convKey = LengthConversionKey(toUnits: LengthUnit(rawValue: fromLabel.text!)!, fromUnits: LengthUnit(rawValue: toLabel.text!)!)
+                
+                return input * lengthConversionTable[convKey]!
+            case "To":
+                convKey = LengthConversionKey(toUnits: LengthUnit(rawValue: toLabel.text!)!, fromUnits: LengthUnit(rawValue: fromLabel.text!)!)
+                
+                return input * lengthConversionTable[convKey]!
+            default:
+                break
+            }
+                break
+        case CalculatorMode.Volume:
+            switch focusField{
+            case "From":
+                volKey = VolumeConversionKey(toUnits: VolumeUnit(rawValue: fromLabel.text!)!, fromUnits: VolumeUnit(rawValue: toLabel.text!)!)
+                
+                return input * volumeConversionTable[volKey]!
+            case "To":
+                volKey = VolumeConversionKey(toUnits: VolumeUnit(rawValue: toLabel.text!)!, fromUnits: VolumeUnit(rawValue: fromLabel.text!)!)
+                
+                return input * volumeConversionTable[volKey]!
+            default:
+                break
+            }
+            break
+        default:
+            break
+        }
         return input //* yrd2meter
     }
 }
