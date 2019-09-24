@@ -15,6 +15,7 @@
 		9E8B54121BB58D6B007E79E2 /* DecimalMinusDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8B54111BB58D6B007E79E2 /* DecimalMinusDemoTests.swift */; };
 		9E8B541C1BB5ADB0007E79E2 /* DecimalMinusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8B541B1BB5ADB0007E79E2 /* DecimalMinusTextField.swift */; };
 		9F75DBFB2335432A00419CAF /* UnitsAndModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F75DBFA2335432900419CAF /* UnitsAndModes.swift */; };
+		9F75DBFD2339898B00419CAF /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F75DBFC2339898B00419CAF /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		9E8B54111BB58D6B007E79E2 /* DecimalMinusDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalMinusDemoTests.swift; sourceTree = "<group>"; };
 		9E8B541B1BB5ADB0007E79E2 /* DecimalMinusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalMinusTextField.swift; sourceTree = "<group>"; };
 		9F75DBFA2335432900419CAF /* UnitsAndModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsAndModes.swift; sourceTree = "<group>"; };
+		9F75DBFC2339898B00419CAF /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				9E8B53FB1BB58D6B007E79E2 /* AppDelegate.swift */,
 				9E8B53FD1BB58D6B007E79E2 /* ViewController.swift */,
 				9E8B53FF1BB58D6B007E79E2 /* Main.storyboard */,
+				9F75DBFC2339898B00419CAF /* SettingsController.swift */,
 				9E8B54021BB58D6B007E79E2 /* Images.xcassets */,
 				9F75DBFA2335432900419CAF /* UnitsAndModes.swift */,
 				9E8B54041BB58D6B007E79E2 /* LaunchScreen.xib */,
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F75DBFB2335432A00419CAF /* UnitsAndModes.swift in Sources */,
+				9F75DBFD2339898B00419CAF /* SettingsController.swift in Sources */,
 				9E8B541C1BB5ADB0007E79E2 /* DecimalMinusTextField.swift in Sources */,
 				9E8B53FE1BB58D6B007E79E2 /* ViewController.swift in Sources */,
 				9E8B53FC1BB58D6B007E79E2 /* AppDelegate.swift in Sources */,

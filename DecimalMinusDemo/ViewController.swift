@@ -135,7 +135,22 @@ class ViewController: UIViewController , UITextFieldDelegate{
         default:
             break
         }
-        return input //* yrd2meter
+        return input
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    @IBAction func cancelButtonPressed(_ segue: UIStoryboardSegue){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+//    @IBAction func cancelButton(_ segue: ViewController){
+//        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popToRootViewController(animated: true)
+        //self.performSegue(withIdentifier: "segueToMain", sender: self)
 }
+
+
 
