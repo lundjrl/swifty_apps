@@ -15,6 +15,8 @@ class SettingsController: UIViewController , UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Put delegates from viewcontroller here
+        //self.
     }
     
     @IBAction func vari(_ sender: UIButton) {
@@ -26,8 +28,9 @@ class SettingsController: UIViewController , UITextFieldDelegate{
         //save fields one and two and assign those values to the fields on the main page.
         //Segue back to the main page with changes
         
-        //Make delegates of values in viewcontroller in order to ship them over to this file so we can manipulate them. 
-        
+        //Make delegates of values in viewcontroller in order to ship them over to this file so we can manipulate them.
+        //Transition back to viewcontroller
+        dismiss(animated: true, completion: nil)
     }
     
 }

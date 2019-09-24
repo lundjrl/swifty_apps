@@ -142,14 +142,17 @@ class ViewController: UIViewController , UITextFieldDelegate{
         super.viewWillAppear(animated)
     }
     
+    //Need for cancel transition back to view
     @IBAction func cancelButtonPressed(_ segue: UIStoryboardSegue){
         self.dismiss(animated: true, completion: nil)
     }
     
-//    @IBAction func cancelButton(_ segue: ViewController){
-//        self.dismiss(animated: true, completion: nil)
-        //self.navigationController?.popToRootViewController(animated: true)
-        //self.performSegue(withIdentifier: "segueToMain", sender: self)
+    //Need for save transition back to view
+    @IBAction func saveButtonPressed(_ segue: UIStoryboardSegue){
+        self.dismiss(animated: true, completion: nil)
+        //Pass back the values changed in save 
+}
+
 }
 
 
