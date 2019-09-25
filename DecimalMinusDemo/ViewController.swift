@@ -2,17 +2,13 @@
 //  ViewController.swift
 //  DecimalMinusDemo
 //
-//  Created by Jonathan Engelsma on 9/25/15.
+//  Created by James Lund | Zachary Thomas on 9/23/19.
 //  Copyright (c) 2015 Jonathan Engelsma. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController , UITextFieldDelegate{
-//    var yards: Double = 0.0
-//    var meters: Double = 0.0
-//
-//    let yrd2meter = 0.9144
+class ViewController: UIViewController , UITextFieldDelegate, SettingsViewControllerDelegate{
     
     // Default mode is length
     var currentMode: CalculatorMode = CalculatorMode.Length
@@ -58,7 +54,6 @@ class ViewController: UIViewController , UITextFieldDelegate{
     @IBAction func calcBtn(_ sender: UIButton) {
         var input: Double
         if(self.inputFieldOne.text == "" && self.inputFieldTwo.text == ""){
-            // Do nothing
         }
         else if(self.inputFieldOne.text == ""){
             focusField = "From"
@@ -142,6 +137,17 @@ class ViewController: UIViewController , UITextFieldDelegate{
         super.viewWillAppear(animated)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let target = segue.destination.children[0] as? SettingsController{
+            target.delegate = self
+            target.currentMode = self.currentMode
+            target.toLabelString = self.toLabel.text!
+            target.fromLabelString = self.fromLabel.text!
+            self.inputFieldOne.text = ""
+            self.inputFieldTwo.text = ""
+        }
+    }
+    
     //Need for cancel transition back to view
     @IBAction func cancelButtonPressed(_ segue: UIStoryboardSegue){
         self.dismiss(animated: true, completion: nil)
@@ -152,6 +158,10 @@ class ViewController: UIViewController , UITextFieldDelegate{
         self.dismiss(animated: true, completion: nil)
         //Pass back the values changed in save 
 }
+    func updateData(_ fromSettingsLabel: String, _ toSettingsLabel: String){
+        self.toLabel.text = toSettingsLabel
+        self.fromLabel.text = fromSettingsLabel
+    }
 
 }
 
