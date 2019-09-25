@@ -8,13 +8,14 @@
 
 import UIKit
 
+// Protocol delegate
 protocol SettingsViewControllerDelegate {
     func updateData(_ :String, _ :String)
 }
 
 class SettingsController: UIViewController , UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{ //SettingDelegate
 
-    
+    // Setup variables
     var selected: String = ""
     var fieldFocus: String = ""
 
@@ -41,14 +42,20 @@ class SettingsController: UIViewController , UITextFieldDelegate, UIPickerViewDe
         //Put delegates from viewcontroller here
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
+        
         fromLabel?.text = fromLabelString
         toLabel?.text = toLabelString
+        
+        // Register top for from units label
         let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsController.toUnitsTap(sender:)))
         toLabel.addGestureRecognizer(tap)
+        
+        // Register tap for to units label
         let tapped = UITapGestureRecognizer(target: self, action: #selector(SettingsController.fromUnitsTap(sender:)))
         fromLabel.addGestureRecognizer(tapped)
         pickerView.isHidden = true
         
+        // Hide picker view
         let detectTouch = UITapGestureRecognizer(target: self, action: #selector(self.dismissPickerView))
         self.view.addGestureRecognizer(detectTouch)
     }
