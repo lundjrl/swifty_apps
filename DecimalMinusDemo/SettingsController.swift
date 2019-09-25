@@ -13,36 +13,7 @@ protocol SettingsViewControllerDelegate {
 }
 
 class SettingsController: UIViewController , UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{ //SettingDelegate
-    func updateData(_: String, _: String) {
-        print("something")
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 3
-    }
-    
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
-        
-        // Return a string from the array for this row.
-        if currentMode == CalculatorMode.Volume{
-            dataArray = volume
-            return dataArray[row]
-        }
-        else{
-            dataArray = length
-            return dataArray[row]
-        }
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.view.endEditing(true)
-        selected = self.dataArray[row] as String
-    }
+
     
     var selected: String = ""
     var fieldFocus: String = ""
@@ -118,6 +89,37 @@ class SettingsController: UIViewController , UITextFieldDelegate, UIPickerViewDe
     @IBAction func toUnitsTap(sender: UITapGestureRecognizer) {
         pickerView.isHidden = false
         fieldFocus = "To"
+    }
+
+        func updateData(_: String, _: String) {
+        print("something")
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        
+        // Return a string from the array for this row.
+        if currentMode == CalculatorMode.Volume{
+            dataArray = volume
+            return dataArray[row]
+        }
+        else{
+            dataArray = length
+            return dataArray[row]
+        }
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.view.endEditing(true)
+        selected = self.dataArray[row] as String
     }
     
 }
