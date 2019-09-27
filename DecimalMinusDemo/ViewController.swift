@@ -100,6 +100,7 @@ class ViewController: UIViewController , UITextFieldDelegate{
         }
     }
     
+    // Figure out where focus is coming from and what units to convert to
     func calculate(_ input: Double) -> Double{
         var convKey: LengthConversionKey
         var volKey: VolumeConversionKey
