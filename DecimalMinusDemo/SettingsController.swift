@@ -12,7 +12,7 @@ protocol SettingsViewControllerDelegate {
     func updateData(_ :String, _ :String)
 }
 
-class SettingsController: UIViewController , UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{ //SettingDelegate
+class SettingsController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{ //SettingDelegate
 
     
     var selected: String = ""

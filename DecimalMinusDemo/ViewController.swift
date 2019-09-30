@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController , UITextFieldDelegate, SettingsViewControllerDelegate{
+class ViewController: DecimalViewController, UITextFieldDelegate, SettingsViewControllerDelegate{
     
     // Default mode is length
     var currentMode: CalculatorMode = CalculatorMode.Length
@@ -33,6 +33,10 @@ class ViewController: UIViewController , UITextFieldDelegate, SettingsViewContro
         self.view.addGestureRecognizer(detectTouch)
         self.inputFieldOne.delegate = self
         self.inputFieldTwo.delegate = self
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -165,5 +169,10 @@ class ViewController: UIViewController , UITextFieldDelegate, SettingsViewContro
 
 }
 
+extension UINavigationController {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
+        return topViewController?.preferredStatusBarStyle ?? .default
+    }
+}
 
 
